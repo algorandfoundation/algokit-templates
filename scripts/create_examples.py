@@ -1,5 +1,5 @@
 import os
-import fire
+import fire  # type: ignore[import-untyped]
 import yaml
 from pathlib import Path
 from copier import run_copy
@@ -30,7 +30,7 @@ def get_template_type(path: Path) -> Optional[str]:
     return template_type
 
 
-def read_workspace_config(workspace_file: Path) -> Dict[str, Any]:
+def read_workspace_config(workspace_file: Path | None) -> Dict[str, Any]:
     """
     Read the workspace file and extract configuration values.
 
@@ -42,7 +42,7 @@ def read_workspace_config(workspace_file: Path) -> Dict[str, Any]:
             - projects_root_path: Base path for projects
             - projects: Dictionary mapping project names to their paths
     """
-    config = {"projects_root_path": None, "projects": {}}
+    config: Dict[str, Any] = {"projects_root_path": None, "projects": {}}
 
     if workspace_file and workspace_file.exists():
         with open(workspace_file, "r") as f:
@@ -124,7 +124,7 @@ def update_example_template_data(
     base_destination_path: Path,
     project_name: str,
     project_type: str,
-) -> None:
+) -> Dict[str, Any]:
     template["destination"] = base_destination_path
     use_workspace, workspace_file = has_workspace(base_destination_path)
 
@@ -139,8 +139,7 @@ def update_example_template_data(
             base_destination_path / projects_root_path / project_dir_name
         )
 
-    else:  # fullstack example
-        temp = 1
+    # else temp = 1 # TODO: Implement fullstack example
 
     return template
 
@@ -148,7 +147,7 @@ def update_example_template_data(
 def update_generator_env_file_template_data(
     template: Dict[str, Any],
     base_destination_path: Path,
-) -> None:
+) -> list[Dict[str, Any]]:
     template_data = template.get("data", {})
     # Get project type from template data
     project_type = template_data.get("project", "all")
@@ -196,8 +195,12 @@ def run_copier_on_template(template: Dict[str, Any]) -> None:
     template_destination.mkdir(parents=True, exist_ok=True)
     repo_root = template["repo_root"]
     base_destination_path = template["base_destination_path"]
-    template_data = {**template.get("data", {}), "_repo_root": repo_root, "_base_destination_path": base_destination_path}
-    
+    template_data = {
+        **template.get("data", {}),
+        "_repo_root": repo_root,
+        "_base_destination_path": base_destination_path,
+    }
+
     run_copy(
         src_path=str(source.absolute()),
         dst_path=str(template_destination.absolute()),

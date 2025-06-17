@@ -11,10 +11,10 @@ clean-examples: ## Remove example directories. Optional: use 'id=<example-id>' t
 		find examples/ -mindepth 1 -type d -exec rm -rf {} + && echo "Removed all examples")
 
 create-examples: ## Create example projects. Optional: use 'id=<example-id>' to create specific example, 'bootstrap=true' to bootstrap projects
-	python ./scripts/create_examples.py $(if $(id),--example_id=$(id),) $(if $(bootstrap),--bootstrap=$(bootstrap),)
+	uv run python ./scripts/create_examples.py $(if $(id),--example_id=$(id),) $(if $(bootstrap),--bootstrap=$(bootstrap),)
 
 bootstrap-examples: ## Bootstrap existing example projects. Optional: use 'id=<example-id>' to bootstrap specific example
-	python ./scripts/bootstrap_examples.py $(if $(id),--example_id=$(id),)
+	uv run python ./scripts/bootstrap_examples.py $(if $(id),--example_id=$(id),)
 
 generate-new-examples: ## Generate new examples by cleaning, creating, and bootstrapping in sequence. Optional: use 'id=<example-id>' to generate specific example
 	make clean-examples $(if $(id),id=$(id),)
@@ -22,7 +22,7 @@ generate-new-examples: ## Generate new examples by cleaning, creating, and boots
 	make bootstrap-examples $(if $(id),id=$(id),)
 
 validate-example-configuration: ## Validate the examples.yml configuration file
-	python ./scripts/validate_configuration.py
+	uv run python ./scripts/validate_configuration.py
 
 push-example: ## Push example to a GitHub branch. Required: 'id=<example-id>'. Optional: 'branch-prefix=<prefix>' (defaults to 'examples')
 	@if [ -z "$(id)" ]; then \
@@ -97,3 +97,7 @@ create-codespace: ## Create a branch with example files at top level and open a 
 	gh codespace create -b tmp/$(id); \
 	git checkout $$original_branch; \
 	echo "Returned to branch $$original_branch"
+
+
+test-examples: ## Test all examples
+	uv run pytest ./scripts/test_examples.py

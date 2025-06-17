@@ -2,7 +2,7 @@ import subprocess
 from pathlib import Path
 from typing import Optional
 import yaml
-import fire
+import fire  # type: ignore[import-untyped]
 
 
 def load_examples_config():

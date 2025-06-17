@@ -27,7 +27,6 @@ To get started with developing and contributing to AlgoKit Templates, you'll nee
 
     ```bash
     uv sync
-    source .venv/bin/activate
     ```
 
     Now you are ready to start making changes!
