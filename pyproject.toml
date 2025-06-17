@@ -12,3 +12,10 @@ dependencies = [
     "tomli>=2.2.1",
     "tomli-w>=1.2.0",
 ]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest-sugar>=1.0.0",
+    "pytest-xdist>=3.7.0",
+    "pytest>=8.4.0",
+]

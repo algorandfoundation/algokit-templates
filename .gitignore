@@ -42,3 +42,7 @@ coverage.xml
 # Project specific
 *.log
 logs/
+examples/**/smart_contracts/artifacts/
+examples/**/poetry.lock
+examples/**/package-lock.json
+examples/**/node_modules/
