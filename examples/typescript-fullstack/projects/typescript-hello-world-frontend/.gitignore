@@ -13,10 +13,8 @@
 
 
 # dotenv environment variable files
-# The following are ignored only for the examples
-# TODO: Create the ability to add these later for non examples
-# .env
-# env/
+.env
+env/
 
 # misc
 /dist

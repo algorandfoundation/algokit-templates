@@ -6,10 +6,10 @@ This project has been generated using AlgoKit. See below for default getting sta
 
 ### Pre-requisites
 
-- [Nodejs 20](https://nodejs.org/en/download) or later
+- [Nodejs 22](https://nodejs.org/en/download) or later
 - [AlgoKit CLI 2.5](https://github.com/algorandfoundation/algokit-cli?tab=readme-ov-file#install) or later
 - [Docker](https://www.docker.com/) (only required for LocalNet)
-- [Puya Compiler 4.4.2](https://pypi.org/project/puyapy/) or later
+- [Puya Compiler 4.4.4](https://pypi.org/project/puyapy/) or later
 
 > For interactive tour over the codebase, download [vsls-contrib.codetour](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour) extension for VS Code, then open the [`.codetour.json`](./.tours/getting-started-with-your-algokit-project.tour) file in code tour extension.
 
@@ -22,8 +22,7 @@ Start by cloning this repository to your local machine.
 Ensure the following pre-requisites are installed and properly configured:
 
 - **Docker**: Required for running a local Algorand network.
-- **AlgoKit CLI**: Essential for project setup and operations. Verify installation with `algokit --version`, expecting `2.5.0` or later.
-- **Puya Compiler**: Can be installed from PyPi by running `pipx install puyapy`. Verify installation with `puyapy --version`, expecting `4.4.2` or later.
+- **AlgoKit CLI**: Essential for project setup and operations. Verify installation with `algokit --version`, expecting `2.6.0` or later.
 
 #### 3. Bootstrap Your Local Environment
 Run the following commands within the project folder:
@@ -93,7 +92,7 @@ For information on using and setting up the `AlgoKit AVM Debugger` VSCode extens
 
 This project makes use of Algorand TypeScript to build Algorand smart contracts. The following tools are in use:
 
-- [Algorand](https://www.algorand.com/) - Layer 1 Blockchain; [Developer portal](https://developer.algorand.org/), [Why Algorand?](https://developer.algorand.org/docs/get-started/basics/why_algorand/)
+- [Algorand](https://www.algorand.com/) - Layer 1 Blockchain; [Developer portal](https://dev.algorand.co/), [Why Algorand?](https://dev.algorand.co/getting-started/why-algorand/)
 - [AlgoKit](https://github.com/algorandfoundation/algokit-cli) - One-stop shop tool for developers building on the Algorand network; [docs](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/algokit.md), [intro tutorial](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/tutorials/intro.md)
 - [Algorand TypeScript](https://github.com/algorandfoundation/puya-ts/) - A semantically and syntactically compatible, typed TypeScript language that works with standard TypeScript tooling and allows you to express smart contracts (apps) and smart signatures (logic signatures) for deployment on the Algorand Virtual Machine (AVM); [docs](https://github.com/algorandfoundation/puya-ts/), [examples](https://github.com/algorandfoundation/puya-ts/tree/main/examples)
 - [AlgoKit Utils](https://github.com/algorandfoundation/algokit-utils-ts) - A set of core Algorand utilities that make it easier to build solutions on Algorand.

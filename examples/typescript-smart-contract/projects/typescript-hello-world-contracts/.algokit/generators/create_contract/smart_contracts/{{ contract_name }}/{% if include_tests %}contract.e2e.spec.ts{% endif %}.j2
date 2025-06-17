@@ -12,7 +12,7 @@ describe('{{ contract_name.split('_')|map('capitalize')|join }} contract', () =>
       // traceAll: true,
     })
   })
-  beforeEach(localnet.beforeEach)
+  beforeEach(localnet.newScope)
 
   const deploy = async (account: Address) => {
     const factory = localnet.algorand.client.getTypedAppFactory({{ contract_name.split('_')|map('capitalize')|join }}Factory, {

@@ -76,6 +76,7 @@ contracts: list[SmartContract] = [
 
 deployment_extension = "py"
 
+
 def _get_output_path(output_dir: Path, deployment_extension: str) -> Path:
     """Constructs the output path for the generated client file."""
     return output_dir / Path(
