@@ -8,7 +8,9 @@ artifacts = "src/contracts"
 
 [project.run]
 build = { commands = ['npm run build'], description = 'Build frontend' }
+{% if preset_name == 'production' -%}
 test = { commands = ['npm run test'], description = 'Run frontend tests' }
+{% endif -%}
 {% if use_eslint_prettier -%}
 lint = { commands = ['npm run lint'], description = 'Lint frontend code' }
 {% endif -%}

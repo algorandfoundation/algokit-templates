@@ -15,7 +15,11 @@ name = '{{ project_name }}'
 artifacts = 'smart_contracts/artifacts'
 
 [project.deploy]
+{%- if deployment_language == 'python' %}
 command = "poetry run python -m smart_contracts deploy"
+{%- elif deployment_language == 'typescript' %}
+command = "npm run deploy:ci"
+{%- endif %}
 environment_secrets = [
   "DEPLOYER_MNEMONIC",
 {%- if use_dispenser %}
@@ -31,10 +35,14 @@ environment_secrets = []
 build = { commands = [
   'poetry run python -m smart_contracts build',
 ], description = 'Build all smart contracts in the project' }
-{%- if use_python_pytest %}
+{%- if deployment_language == 'python' and use_python_pytest %}
 test = { commands = [
   'poetry run pytest',
 ], description = 'Run smart contract tests' }
+{%- elif deployment_language == 'typescript' and use_typescript_jest %}
+test = { commands = [
+  'npm run test',
+], description = 'Run smart contract tests using Jest' }
 {%- endif %}
 {%- if use_python_pip_audit %}
 audit = { commands = [
