@@ -1,7 +1,7 @@
 _tasks:
   - "echo '==== Successfully initialized new smart contract 🚀 ===='"
 
-contract_name:
+c_n:
   type: str
   help: Name of your new contract.
   placeholder: "my-new-contract"

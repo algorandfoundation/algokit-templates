@@ -7,7 +7,6 @@ from collections.abc import Callable
 from pathlib import Path
 from shutil import rmtree
 
-{% if deployment_language == 'python' -%}
 from algokit_utils.config import config
 from dotenv import load_dotenv
 
@@ -15,9 +14,6 @@ from dotenv import load_dotenv
 # Learn more about using AlgoKit AVM Debugger to debug your TEAL source codes and inspect various kinds of
 # Algorand transactions in atomic groups -> https://github.com/algorandfoundation/algokit-avm-vscode-debugger
 config.configure(debug=True, trace_all=False)
-{%- else -%}
-from dotenv import load_dotenv
-{%- endif %}
 
 # Set up logging and load environment variables.
 logging.basicConfig(
@@ -78,11 +74,7 @@ contracts: list[SmartContract] = [
 
 # -------------------------- Build Logic -------------------------- #
 
-{% if deployment_language == 'python' -%}
 deployment_extension = "py"
-{%- elif deployment_language == 'typescript' -%}
-deployment_extension = "ts"
-{%- endif %}
 
 
 def _get_output_path(output_dir: Path, deployment_extension: str) -> Path:
@@ -183,7 +175,6 @@ def main(action: str, contract_name: str | None = None) -> None:
             for contract in filtered_contracts:
                 logger.info(f"Building app at {contract.path}")
                 build(artifact_path / contract.name, contract.path)
-        {%- if deployment_language == 'python' %}
         case "deploy":
             for contract in filtered_contracts:
                 output_dir = artifact_path / contract.name
@@ -207,7 +198,6 @@ def main(action: str, contract_name: str | None = None) -> None:
                 if contract.deploy:
                     logger.info(f"Deploying {contract.name}")
                     contract.deploy()
-        {%- endif %}
         case _:
             logger.error(f"Unknown action: {action}")
 

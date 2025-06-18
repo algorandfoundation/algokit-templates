@@ -14,9 +14,7 @@ algorand-python = "^2.0.0"
 algorand-python-testing = "~0"
 
 [tool.poetry.group.dev.dependencies]
-{% if deployment_language == 'python' -%}
 algokit-client-generator = "^2.1.0"
-{% endif -%}
 {% if use_python_black -%}
 black = {extras = ["d"], version = "*"}
 {% endif -%}

@@ -3,7 +3,6 @@ _templates_suffix: ".jinja"
 
 use_workspace:
   type: bool
-  when: false # never prompted to user explicitly, instead expect cli to auto fill (supported cli versions > v1.13.x)
   help: Automatically filled by AlgoKit CLI (>1.13.x) - passes the --workspace/--no-workspace flag's value, can be used to reason whether this template is currently being instantiated as part of a workspace or not.
   default: no
 
