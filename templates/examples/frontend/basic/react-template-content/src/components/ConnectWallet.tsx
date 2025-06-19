@@ -12,7 +12,7 @@ const ConnectWallet = ({ openModal, closeModal }: ConnectWalletInterface) => {
   const isKmd = (wallet: Wallet) => wallet.id === WalletId.KMD
 
   return (
-    <dialog id="connect_wallet_modal" className={`modal ${openModal ? 'modal-open' : ''}`}{% if use_daisy_ui == false -%} style={{ '{{' }} display: openModal ? 'block' : 'none' {{ '}}' }}{% endif -%}>
+    <dialog id="connect_wallet_modal" className={`modal ${openModal ? 'modal-open' : ''}`} style={{ display: openModal ? 'block' : 'none' }}>
       <form method="dialog" className="modal-box">
         <h3 className="font-bold text-2xl">Select wallet provider</h3>
 
@@ -38,7 +38,7 @@ const ConnectWallet = ({ openModal, closeModal }: ConnectWalletInterface) => {
                   <img
                     alt={`wallet_icon_${wallet.id}`}
                     src={wallet.metadata.icon}
-                    style={{ '{{' }} objectFit: 'contain', width: '30px', height: 'auto' {{ '}}' }}
+                    style={{ objectFit: 'contain', width: '30px', height: 'auto' }}
                   />
                 )}
                 <span>{isKmd(wallet) ? 'LocalNet Wallet' : wallet.metadata.name}</span>
@@ -46,7 +46,7 @@ const ConnectWallet = ({ openModal, closeModal }: ConnectWalletInterface) => {
             ))}
         </div>
 
-        <div className="modal-action {% if use_daisy_ui == false -%}grid{% endif -%}">
+        <div className="modal-action grid">
           <button
             data-test-id="close-wallet-modal"
             className="btn"

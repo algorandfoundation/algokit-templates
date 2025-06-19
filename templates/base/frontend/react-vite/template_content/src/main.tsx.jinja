@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 {% if use_tailwind -%}
 import './styles/main.css'
-{% elif use_tailwind == false -%}
-import './styles/App.css'
 {% endif -%}
 import ErrorBoundary from './components/ErrorBoundary'
 

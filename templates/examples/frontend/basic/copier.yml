@@ -1,5 +1,5 @@
 # Template configuration
-_templates_suffix: ""
+_templates_suffix: "jinja"
 _subdirectory: "{% if framework_choice == 'astro' %}astro_template_content{% else %}react-template-content{% endif %}"
 
 # User prompts
