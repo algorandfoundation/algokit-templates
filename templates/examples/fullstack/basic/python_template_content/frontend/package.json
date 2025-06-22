@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "generate:app-clients": "algokit project link --all",
+        "dev": "npm run generate:app-clients && vite",
+        "build": "npm run generate:app-clients && tsc && vite build"
+    }
+}

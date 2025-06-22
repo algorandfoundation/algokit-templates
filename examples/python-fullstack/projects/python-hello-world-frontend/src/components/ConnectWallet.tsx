@@ -12,7 +12,7 @@ const ConnectWallet = ({ openModal, closeModal }: ConnectWalletInterface) => {
   const isKmd = (wallet: Wallet) => wallet.id === WalletId.KMD
 
   return (
-    <dialog id="connect_wallet_modal" className={`modal ${openModal ? 'modal-open' : ''}`}style={{ display: openModal ? 'block' : 'none' }}>
+    <dialog id="connect_wallet_modal" className={`modal ${openModal ? 'modal-open' : ''}`} style={{ display: openModal ? 'block' : 'none' }}>
       <form method="dialog" className="modal-box">
         <h3 className="font-bold text-2xl">Select wallet provider</h3>
 

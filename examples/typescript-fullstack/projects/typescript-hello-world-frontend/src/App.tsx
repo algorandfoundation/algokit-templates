@@ -2,6 +2,7 @@ import { SupportedWallet, WalletId, WalletManager, WalletProvider } from '@txnla
 import { SnackbarProvider } from 'notistack'
 import Home from './Home'
 import { getAlgodConfigFromViteEnvironment, getKmdConfigFromViteEnvironment } from './utils/network/getAlgoClientConfigs'
+import './styles/App.css'
 
 let supportedWallets: SupportedWallet[]
 if (import.meta.env.VITE_ALGOD_NETWORK === 'localnet') {

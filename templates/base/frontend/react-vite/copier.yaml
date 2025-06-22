@@ -91,3 +91,4 @@ cloud_provider:
     Vercel: "vercel"
     Skip CD setup: "none"
   default: "{{ 'netlify' if preset_name == 'production' else 'none' }}"
+

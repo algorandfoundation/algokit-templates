@@ -124,7 +124,7 @@ def update_example_template_data(
     base_destination_path: Path,
     project_name: str,
     project_type: str,
-) -> Dict[str, Any]:
+) -> list[Dict[str, Any]]:
     template["destination"] = base_destination_path
     use_workspace, workspace_file = has_workspace(base_destination_path)
 
@@ -138,10 +138,65 @@ def update_example_template_data(
         template["destination"] = (
             base_destination_path / projects_root_path / project_dir_name
         )
+        return [template]
+    elif project_type == "fullstack":
+        # For fullstack examples, deploy to both contracts and frontend destinations
+        use_workspace, workspace_file = has_workspace(base_destination_path)
+        workspace_config = (
+            read_workspace_config(workspace_file) if use_workspace else {}
+        )
+        framework_choice = template.get("data", {}).get("framework_choice", "python")
 
-    # else temp = 1 # TODO: Implement fullstack example
+        templates = []
+        if BACKEND_TEMPLATES_NAME in workspace_config["projects"]:
+            contracts_template = template.copy()
+            contracts_folder_path = (
+                Path(contracts_template["source"])
+                / f"{framework_choice}_template_content"
+                / "contracts"
+            )
 
-    return template
+            # If the contracts folder exists, use it as the subdirectory
+            # If not, don't run the copier on the contracts template
+            if contracts_folder_path.exists():
+                relative_contracts_folder_path = contracts_folder_path.relative_to(
+                    Path(contracts_template["source"])
+                )
+                contracts_template["data"]["subdirectory"] = str(
+                    relative_contracts_folder_path
+                )
+                contracts_template["destination"] = (
+                    base_destination_path
+                    / workspace_config["projects"][BACKEND_TEMPLATES_NAME]
+                )
+                templates.append(contracts_template)
+
+        if FRONTEND_TEMPLATES_NAME in workspace_config["projects"]:
+            frontend_template = template.copy()
+            frontend_folder_path = (
+                Path(frontend_template["source"])
+                / f"{framework_choice}_template_content"
+                / "frontend"
+            )
+
+            # If the frontend folder exists, use it as the subdirectory
+            # If not, don't run the copier on the frontend template
+            if frontend_folder_path.exists():
+                relative_frontend_folder_path = frontend_folder_path.relative_to(
+                    Path(frontend_template["source"])
+                )
+                frontend_template["data"]["subdirectory"] = str(
+                    relative_frontend_folder_path
+                )
+                frontend_template["destination"] = (
+                    base_destination_path
+                    / workspace_config["projects"][FRONTEND_TEMPLATES_NAME]
+                )
+                templates.append(frontend_template)
+
+        return templates
+    else:
+        return [template]
 
 
 def update_generator_env_file_template_data(
@@ -200,7 +255,9 @@ def run_copier_on_template(template: Dict[str, Any]) -> None:
         "_repo_root": repo_root,
         "_base_destination_path": base_destination_path,
     }
-
+    print(
+        f"Running copier on template: {template['source']} with copier file: {source / 'copier.yml'}  "
+    )
     run_copy(
         src_path=str(source.absolute()),
         dst_path=str(template_destination.absolute()),
@@ -246,10 +303,11 @@ def create_example(example: Dict[str, Any], bootstrap: bool = False) -> None:
                 run_copier_on_template(processed_template)
             elif template_type == "examples":
                 project_type = source_parts.pop(0)
-                processed_template = update_example_template_data(
+                processed_templates = update_example_template_data(
                     template, base_destination_path, project_name, project_type
                 )
-                run_copier_on_template(processed_template)
+                for processed_template in processed_templates:
+                    run_copier_on_template(processed_template)
             else:
                 raise ValueError(f"Invalid template type: {template_type}")
 

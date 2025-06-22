@@ -109,6 +109,9 @@ examples:
           language: python
           contract_name: "hello_world"
       - source: "templates/base/frontend/react-vite"
+      - source: "templates/examples/frontend/basic"
+        data:
+          framework_choice: react
       - source: "templates/examples/fullstack/basic"
         data:
           framework_choice: python
@@ -138,6 +141,10 @@ examples:
           language: typescript
           contract_name: "hello_world"
       - source: "templates/base/frontend/react-vite"
+      - source: "templates/examples/frontend/basic"
+        data:
+          framework_choice: react
+          is_fullstack: true
       - source: "templates/examples/fullstack/basic"
         data:
           framework_choice: typescript

@@ -12,7 +12,6 @@
     "npm": ">=9.0"
   },
   "devDependencies": {
-    "@algorandfoundation/algokit-client-generator": "^5.0.0",
     "@types/node": "^18.17.14",
     "@types/react": "^18.2.11",
     "@types/react-dom": "^18.2.4",
@@ -21,25 +20,26 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
     "vite": "^5.0.0",
-    "vite-plugin-node-polyfills": "^0.22.0"
+    "vite-plugin-node-polyfills": "^0.22.0",
+    "@algorandfoundation/algokit-client-generator": "^5.0.0"
   },
   "dependencies": {
+    "notistack": "^3.0.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tslib": "^2.6.2",
     "@algorandfoundation/algokit-utils": "^9.0.0",
     "@blockshake/defly-connect": "^1.2.1",
     "@perawallet/connect": "^1.4.1",
     "@txnlab/use-wallet": "^4.0.0",
     "@txnlab/use-wallet-react": "^4.0.0",
-    "algosdk": "^3.0.0",
-    "notistack": "^3.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tslib": "^2.6.2"
+    "algosdk": "^3.0.0"
   },
   "scripts": {
-    "generate:app-clients": "algokit project link --all",
     "dev": "npm run generate:app-clients && vite",
     "build": "npm run generate:app-clients && tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate:app-clients": "algokit project link --all"
   },
   "eslintConfig": {
     "extends": [
