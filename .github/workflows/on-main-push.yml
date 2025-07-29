@@ -39,30 +39,28 @@ jobs:
   # Call release workflow for beta releases
   create-beta-release:
     uses: ./.github/workflows/release.yml
-    with:
-      stable: 'false'
     secrets: inherit
 
-  publish-demo-sites:
-    runs-on: ubuntu-latest
-    needs: create-example-branches
-    steps:
-      - name: Generate bot token
-        uses: actions/create-github-app-token@v1
-        id: app_token
-        with:
-          app-id: ${{ secrets.BOT_ID }}
-          private-key: ${{ secrets.BOT_SK }}
+  # publish-demo-sites:
+  #   runs-on: ubuntu-latest
+  #   needs: create-example-branches
+  #   steps:
+  #     - name: Generate bot token
+  #       uses: actions/create-github-app-token@v1
+  #       id: app_token
+  #       with:
+  #         app-id: ${{ secrets.BOT_ID }}
+  #         private-key: ${{ secrets.BOT_SK }}
 
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          token: ${{ steps.app_token.outputs.token }}
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+  #       with:
+  #         token: ${{ steps.app_token.outputs.token }}
 
-      - name: Build Demo Sites
-        uses: ./.github/actions/build-demo-sites
+  #     - name: Build Demo Sites
+  #       uses: ./.github/actions/build-demo-sites
 
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
-        with:
-          token: ${{ steps.app_token.outputs.token }}
+  #     - name: Deploy to GitHub Pages
+  #       uses: actions/deploy-pages@v4
+  #       with:
+  #         token: ${{ steps.app_token.outputs.token }}
