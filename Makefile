@@ -101,9 +101,4 @@ create-codespace: ## Create a branch with example files at top level and open a 
 
 
 test-examples: ## Test all examples
-	@if [ -z "$$CI" ]; then \
-		uv run pytest ./scripts/test_examples.py -n auto --dist=worksteal --max-worker-restart 2; \
-	else \
-		uv run pytest ./scripts/test_examples.py -n 2 --dist=worksteal --maxprocesses=2 --max-worker-restart 2; \
-	fi
-
+	uv run pytest ./scripts/test_examples.py -n 2 --dist=worksteal --maxprocesses=2 --max-worker-restart 2;
