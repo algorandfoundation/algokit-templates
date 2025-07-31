@@ -37,6 +37,7 @@ allow_zero_version = true
 # Branch configuration removed - controlled by GitHub Action parameters
 
 [tool.semantic_release.changelog]
+template_dir = "force-default-changelog" # Force semantic release to use default changelog templates
 exclude_commit_patterns = [
     "^Merge pull request",
     "^Update CHANGELOG",

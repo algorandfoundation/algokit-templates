@@ -62,7 +62,7 @@ runs:
 
           # Add BASE_PATH environment variable for the build
           export BASE_PATH="/${REPO_NAME}/${ID}"
-          npm ci
+          npm install
           npm run build
 
           # # Move build output to dist directory
