@@ -8,9 +8,10 @@ help: ## Display this help message
 clean-examples: ## Remove example directories. Optional: use 'id=<example-id>' to remove specific example
 	$(if $(id),\
 		rm -rf examples/$(id) && echo "Removed example: $(id)",\
-		find examples/ -mindepth 1 -type d -exec rm -rf {} + && echo "Removed all examples")
+		find examples/ -mindepth 1 -type d -exec rm -rf {} + 2>/dev/null || true && echo "Removed all examples")
 
 create-examples: ## Create example projects. Optional: use 'id=<example-id>' to create specific example, 'bootstrap=true' to bootstrap projects
+	make clean-examples $(if $(id),id=$(id),)
 	uv run python ./scripts/create_examples.py $(if $(id),--example_id=$(id),) $(if $(bootstrap),--bootstrap=$(bootstrap),)
 
 bootstrap-examples: ## Bootstrap existing example projects. Optional: use 'id=<example-id>' to bootstrap specific example
@@ -100,4 +101,9 @@ create-codespace: ## Create a branch with example files at top level and open a 
 
 
 test-examples: ## Test all examples
-	uv run pytest ./scripts/test_examples.py
+	@if [ -z "$$CI" ]; then \
+		uv run pytest ./scripts/test_examples.py -n auto --dist=worksteal --max-worker-restart 2; \
+	else \
+		uv run pytest ./scripts/test_examples.py -n 2 --dist=worksteal --maxprocesses=2 --max-worker-restart 2; \
+	fi
+

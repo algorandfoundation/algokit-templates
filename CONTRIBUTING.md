@@ -23,6 +23,18 @@ We welcome contributions of all kinds, from fixing typos to adding new features.
     ```
 
 * **Coding Standards**: Please adhere to the coding style of the existing codebase. For Python, we follow PEP 8.
+* **Pre-commit Hooks**: This project uses [pre-commit](https://pre-commit.com/) to ensure code quality. After setting up your development environment, install the pre-commit hooks:
+
+    ```bash
+    pre-commit install  # Auto-invoke hooks on each commit
+    ```
+
+    You can also run pre-commit manually on all files:
+
+    ```bash
+    pre-commit run --all-files  # Run manually on all files
+    ```
+
 * **Commit Messages**: We follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) specification. This helps in maintaining a clear and automated commit history.
 * **Testing**: Before submitting a pull request, please ensure your changes are well-tested. If you modify a template, regenerate the corresponding example(s) and verify that they are correct and functional.
 

@@ -1,66 +1,22 @@
-# Algorand Fullstack Example
+# typescript-hello-world
 
-This is a full-stack example that demonstrates how to build and deploy Algorand smart contracts with a React frontend. It combines production-ready smart contract development with a modern web interface.
+Welcome to your new AlgoKit project!
 
-## Features
+This is your workspace root. A `workspace` in AlgoKit is an orchestrated collection of standalone projects (backends, smart contracts, frontend apps and etc).
 
-### Frontend Features
+By default, `projects_root_path` parameter is set to `projects`. Which instructs AlgoKit CLI to create a new directory under `projects` directory when new project is instantiated via `algokit init` at the root of the workspace.
 
-- React web app with TypeScript and Tailwind CSS
-- Styled components using DaisyUI
-- Wallet integration via use-wallet (supports Pera, Defly, and Exodus)
-- Jest unit tests and Playwright E2E tests
-- Environment variable support with dotenv
-- Local development support with KMD provider for algokit localnet
+## Getting Started
 
-### Smart Contract Features
+To get started refer to `README.md` files in respective sub-projects in the `projects` directory.
 
-- Multiple smart contract language support:
-  - Python (via Beaker)
-  - TypeScript
-  - TealScript
-- Automated testing and deployment workflows
-- Deploy-time immutability controls
+To learn more about algokit, visit [documentation](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/algokit.md).
 
-## Prerequisites
+### GitHub Codespaces
 
-- Python 3.12 or later
-- Docker (required for LocalNet)
-- AlgoKit CLI (2.0.0 or later)
-- Poetry (1.2 or later)
+To get started execute:
 
-## Quick Start
+1. `algokit generate devcontainer` - invoking this command from the root of this repository will create a `devcontainer.json` file with all the configuration needed to run this project in a GitHub codespace. [Run the repository inside a codespace](https://docs.github.com/en/codespaces/getting-started/quickstart) to get started.
+2. `algokit init` - invoke this command inside a github codespace to launch an interactive wizard to guide you through the process of creating a new AlgoKit project
 
-1. **Launch in Github Codespace (Recommended)**
-
-   - Click the **CodeSpace** button to launch the project
-   - This automatically sets up AlgoKit and runs Localnet
-
-2. **Local Setup**
-
-   ```bash
-   # Install dependencies for all projects
-   algokit project bootstrap all
-
-   # Or install specific dependencies:
-   algokit project bootstrap npm     # Frontend dependencies
-   algokit project bootstrap poetry  # Smart contract dependencies
-   ```
-
-## Development Workflow
-
-### Smart Contracts
-
-```bash
-# Build contracts
-algokit project run build
-
-# Deploy to localnet
-algokit project deploy localnet
-```
-
-### Frontend
-
-- Development server: `cd frontend && npm run dev`
-- Run tests: `npm test`
-- Build: `npm run build`
+Powered by [Copier templates](https://copier.readthedocs.io/en/stable/).

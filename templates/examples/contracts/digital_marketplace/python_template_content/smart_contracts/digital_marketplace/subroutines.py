@@ -1,6 +1,6 @@
 from algopy import ImmutableArray, UInt64, subroutine, urange
 
-from smart_contracts.digital_marketplace.contract import BidReceipt, SaleKey
+from smart_contracts.digital_marketplace.types import BidReceipt, SaleKey
 
 
 @subroutine

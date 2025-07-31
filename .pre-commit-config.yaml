@@ -27,3 +27,10 @@ repos:
         types_or: [python, pyi]
         require_serial: true
         files: "^scripts/"
+      - id: examples-test
+        name: examples-test
+        description: "Create and test all examples"
+        entry: bash -c 'make create-examples && make test-examples'
+        language: system
+        pass_filenames: false
+        files: "^(templates/|generators/|scripts/|examples\\.yml)"

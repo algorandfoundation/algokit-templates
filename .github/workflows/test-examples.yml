@@ -33,5 +33,16 @@ jobs:
       - name: Validate example configuration
         run: make validate-example-configuration
 
+      - name: Create examples
+        run: make create-examples
+
       - name: Test examples
         run: make test-examples
+
+      - name: Check output stability
+        shell: bash
+        run: |
+          # Add untracked files as empty so they come up in diff
+          git add -N ./examples
+          # Look for changes in generated templates and error if there are any
+          git diff --exit-code --minimal ./examples

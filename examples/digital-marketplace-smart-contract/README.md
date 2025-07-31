@@ -1,28 +1,22 @@
-# Digital Marketplace Smart Contract
+# digital-marketplace
 
-This example demonstrates a Digital Marketplace smart contract on Algorand. It allows users to list assets for sale, either for a fixed price or through an auction-style bidding system.
+Welcome to your new AlgoKit project!
 
-## Features
+This is your workspace root. A `workspace` in AlgoKit is an orchestrated collection of standalone projects (backends, smart contracts, frontend apps and etc).
 
-- **Deposits:** Users can deposit and withdraw ALGOs into the contract to be used for purchases and bids.
-- **Asset Sales:** Users can list their assets (ASAs) for sale at a fixed price.
-- **Bidding:** For assets on sale, users can place bids. A new bid must be higher than the current highest bid.
-- **Purchases:** A buyer can purchase a listed asset directly if a fixed price is set.
-- **Auctions:** Sellers can accept the highest bid on their asset, transferring the asset to the bidder and the bid amount to the seller.
-- **Bid Management:** Bidders can withdraw their bids if they are not the leading bid on any auction.
+By default, `projects_root_path` parameter is set to `projects`. Which instructs AlgoKit CLI to create a new directory under `projects` directory when new project is instantiated via `algokit init` at the root of the workspace.
 
-## How it works
+## Getting Started
 
-The contract manages user balances in a `BoxMap` and keeps track of sales and bids.
+To get started refer to `README.md` files in respective sub-projects in the `projects` directory.
 
-### Key Functions
+To learn more about algokit, visit [documentation](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/algokit.md).
 
-- `deposit(payment: gtxn.PaymentTransaction)`: Deposits ALGOs into the user's account within the contract.
-- `withdraw(amount: arc4.UInt64)`: Withdraws a specified amount of ALGOs from the user's account.
-- `open_sale(asset_deposit: gtxn.AssetTransferTransaction, cost: arc4.UInt64)`: Creates a new sale for an asset at a given `cost`.
-- `close_sale(asset: Asset)`: Allows the seller to close their sale and reclaim their asset.
-- `buy(sale_key: SaleKey)`: Allows a user to buy an asset for the specified `cost`.
-- `bid(sale_key: SaleKey, new_bid_amount: arc4.UInt64)`: Places a bid on an asset. The bid must be higher than the current one.
-- `accept_bid(asset: arc4.UInt64)`: The seller accepts the highest bid. The asset is transferred to the bidder, and the funds are transferred to the seller.
-- `claim_unencumbered_bids()`: Allows a user to recover funds from bids that are no longer active or winning.
+### GitHub Codespaces
 
+To get started execute:
+
+1. `algokit generate devcontainer` - invoking this command from the root of this repository will create a `devcontainer.json` file with all the configuration needed to run this project in a GitHub codespace. [Run the repository inside a codespace](https://docs.github.com/en/codespaces/getting-started/quickstart) to get started.
+2. `algokit init` - invoke this command inside a github codespace to launch an interactive wizard to guide you through the process of creating a new AlgoKit project
+
+Powered by [Copier templates](https://copier.readthedocs.io/en/stable/).

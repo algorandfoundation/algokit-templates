@@ -17,6 +17,7 @@ dependencies = [
 dev-dependencies = [
   "mypy>=1.16.1",
   "pytest-sugar>=1.0.0",
+  "pytest-xdist>=3.8.0",
   "pytest>=8.4.0",
   "ruff>=0.12.0",
   "types-pyyaml>=6.0.12.20250516",
@@ -36,7 +37,6 @@ allow_zero_version = true
 # Branch configuration removed - controlled by GitHub Action parameters
 
 [tool.semantic_release.changelog]
-template_dir = "templates"
 exclude_commit_patterns = [
     "^Merge pull request",
     "^Update CHANGELOG",

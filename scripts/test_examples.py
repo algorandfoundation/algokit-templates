@@ -33,11 +33,25 @@ def get_example_folders() -> list[str]:
 
 
 def _run_command(
-    cmd: list[str], cwd: Path, timeout: int
+    cmd: list[str],
+    cwd: Path,
+    timeout: int,
+    env_overrides: dict[str, str] | None = None,
+    env_removals: list[str] | None = None,
 ) -> subprocess.CompletedProcess[str]:
     """Run subprocess command with error handling and comprehensive logging."""
     cmd_str = " ".join(cmd)
     logger.info(f"Executing command: {cmd_str} in directory: {cwd}")
+
+    # Prepare environment variables
+    import os
+
+    env = os.environ.copy()
+    if env_overrides:
+        env.update(env_overrides)
+    if env_removals:
+        for key in env_removals:
+            env.pop(key, None)
 
     try:
         result = subprocess.run(
@@ -47,6 +61,7 @@ def _run_command(
             text=True,
             timeout=timeout,
             check=False,
+            env=env,
         )
 
         # Log command completion details
@@ -101,6 +116,7 @@ def test_example_commands(example_folder: str) -> None:
         ["algokit", "-v", "project", "bootstrap", "all"],
         example_path,
         BOOTSTRAP_TIMEOUT,
+        env_removals=["CI"],
     )
 
     if bootstrap_result.returncode != 0:
