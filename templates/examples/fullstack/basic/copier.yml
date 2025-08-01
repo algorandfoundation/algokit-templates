@@ -23,7 +23,7 @@ copy_readme:
 _tasks:
   - name: Copy README
     command: |
-      if {{ copy_readme }}; then
+      if [ "{{ copy_readme }}" = "True" ]; then
         cp {{ _copier_conf.src_path }}/README.md {{ _base_destination_path }}/README.md
       fi
   - name: Merge package json dependencies

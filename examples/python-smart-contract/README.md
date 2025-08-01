@@ -1,22 +1,69 @@
-# python-hello-world
+# Smart Contract Example
 
-Welcome to your new AlgoKit project!
+Welcome to your new AlgoKit project! This is an example of a Smart Contract.
 
-This is your workspace root. A `workspace` in AlgoKit is an orchestrated collection of standalone projects (backends, smart contracts, frontend apps and etc).
+### Pre-requisites
 
-By default, `projects_root_path` parameter is set to `projects`. Which instructs AlgoKit CLI to create a new directory under `projects` directory when new project is instantiated via `algokit init` at the root of the workspace.
+These pre-requisites already come configured in the Github codespace, but you must have a github account to launch a codespace.
 
-## Getting Started
+- [Python 3.12](https://www.python.org/downloads/) or later
+- [Docker](https://www.docker.com/) (required for LocalNet)
+- [AlgoKit CLI](https://github.com/algorandfoundation/algokit-cli#install) (2.0.0 or later)
+- [Poetry](https://python-poetry.org/docs/#installation) (1.2 or later)
 
-To get started refer to `README.md` files in respective sub-projects in the `projects` directory.
+### Initial Setup
 
-To learn more about algokit, visit [documentation](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/algokit.md).
+1. **Open the example in a Github Codespace**
 
-### GitHub Codespaces
+   Click the **CodeSpace** button above to launch the project in a Codespace. This will launch a VM using your Github profile. This will automatically install the latest Algokit and run Localnet. The example comes pre-configured with a `.env` file that points to Localnet.
 
-To get started execute:
+2. **Bootstrap Environment**
+   You needs to install all the dependencies in order to launch the example. The Algokit CLI comes equipped with a command that installs the dependencies in each of your projects.
 
-1. `algokit generate devcontainer` - invoking this command from the root of this repository will create a `devcontainer.json` file with all the configuration needed to run this project in a GitHub codespace. [Run the repository inside a codespace](https://docs.github.com/en/codespaces/getting-started/quickstart) to get started.
-2. `algokit init` - invoke this command inside a github codespace to launch an interactive wizard to guide you through the process of creating a new AlgoKit project
+   ```bash
+   # Install dependencies for contracts and frontend projects
+   algokit project bootstrap all
+   # Install dependencies for projects that use npm
+   algokit project bootstrap npm
+   # Install dependencies for projects that use python via poetry
+   algokit project bootstrap poetry
+   ```
 
-Powered by [Copier templates](https://copier.readthedocs.io/en/stable/).
+### Development Workflow
+
+#### Command Line
+
+- **Build Contracts**: `algokit project run build`
+- **Deploy**: `algokit project deploy localnet`
+
+## Project Features
+
+### Smart Contract Generation
+
+- Use `algokit generate smart-contract` to create new contracts
+- Contracts are placed in the `smart_contracts` directory
+- Each contract has its own deployment configuration
+
+### Debugging Support
+
+- Integrated with AlgoKit AVM Debugger
+- VSCode launch configurations included
+- Interactive TEAL debugging available
+
+## Tools & Technologies
+
+- **Algorand**: Layer 1 Blockchain platform
+- **AlgoKit**: Development toolkit for Algorand
+- **Algorand Python**: Smart contract development in Python
+- **AlgoKit Utils**: Core Algorand utilities
+- **Poetry**: Python dependency management
+
+## Project Structure
+
+The workspace uses a `projects` directory as the default location for new projects. Each sub-project contains its own README with specific setup instructions.
+
+## Additional Resources
+
+- [AlgoKit Documentation](https://github.com/algorandfoundation/algokit-cli/blob/main/docs/algokit.md)
+- [Algorand Developer Portal](https://dev.algorand.co/)
+- [Puya Documentation](https://algorandfoundation.github.io/puya/)
