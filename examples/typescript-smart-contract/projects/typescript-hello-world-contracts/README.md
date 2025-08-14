@@ -1,1 +1,0 @@
-test typescript example readme
