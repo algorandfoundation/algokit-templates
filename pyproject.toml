@@ -1,60 +1,21 @@
 [project]
-name = "algokit-templates"
-version = "0.1.1-beta.3"
-description = "Templates and examples for Algorand projects"
+name = "algokit-utils-python"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "algokit@algorand.foundation"}
+]
+license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12,<4.0"
 dependencies = [
-  "copier>=9.5.0",
-  "fire>=0.7.0",
-  "pydantic>=2.10.6",
-  "pyyaml>=6.0.2",
-  "tomli>=2.2.1",
-  "tomli-w>=1.2.0",
-]
-
-[tool.uv]
-dev-dependencies = [
-  "mypy>=1.16.1",
-  "pytest-sugar>=1.0.0",
-  "pytest-xdist>=3.8.0",
-  "pytest>=8.4.0",
-  "ruff>=0.12.0",
-  "types-pyyaml>=6.0.12.20250516",
+    "algokit-utils (>=4.0.0,<5.0.0)",
+    "jupyter (>=1.1.1,<2.0.0)",
+    "dotenv (>=0.9.9,<0.10.0)"
 ]
 
 
-[tool.semantic_release]
-version_toml = [
-    "pyproject.toml:project.version",
-]
-# Add [skip ci] to prevent bot commits from re-triggering workflows
-commit_message = "chore: release {version} [skip ci]"
-# Prevent major version bumps by staying on version 0.x.x
-# Remove this when version 1.0.0 is released
-allow_zero_version = true
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
 
-# Branch configuration removed - controlled by GitHub Action parameters
-
-[tool.semantic_release.changelog]
-template_dir = "force-default-changelog" # Force semantic release to use default changelog templates
-exclude_commit_patterns = [
-    "^Merge pull request",
-    "^Update CHANGELOG",
-    "^Bump version",
-    "^chore: merge main for release",
-]
-
-[tool.semantic_release.changelog.default_templates]
-changelog_file = "CHANGELOG.md"
-
-[tool.semantic_release.commit_parser_options]
-allowed_tags = ["build", "chore", "ci", "docs", "feat", "fix", "perf", "style", "refactor", "test"]
-minor_tags = ["feat"]
-patch_tags = ["fix", "perf"]
-# Disable major version bumps by setting major_tags to empty list
-# Remove this when version 1.0.0 is released
-major_tags = []
-
-[tool.semantic_release.publish]
-upload_to_vcs_release = true
