@@ -1,0 +1,38 @@
+[algokit]
+min_version = "v2.0.0"  # Remains unchanged
+
+[project]
+# CHANGED: type enum now only includes: contracts, frontend, fullstack
+# REMOVED: "workspace" and "backend" as types (workspace is now a generator)
+type = "fullstack"  
+name = "my-project"
+
+# projects_root_path is only required when workspace generator is applied
+projects_root_path = "projects"
+
+# NEW: Track all applied generators with metadata, exact metadata additions is a subject for discussion outside of adr 1 scope.
+[project.generators]
+workspace = { version = "1.0.0", timestamp = "2024-01-01T00:00:00Z" }
+"base-contracts-python" = { version = "1.0.0", timestamp = "2024-01-01T00:01:00Z" }
+"base-frontend-react" = { version = "1.0.0", timestamp = "2024-01-01T00:02:00Z" }
+testing = { version = "1.0.0", timestamp = "2024-01-01T00:03:00Z", detected_type = "python_contract" }
+linting = { version = "1.0.0", timestamp = "2024-01-01T00:04:00Z" }
+
+# Remains unchanged - populated by generators
+[project.run]
+test = { commands = ["poetry run pytest"], description = "Run smart contract tests" }
+lint = { commands = ["poetry run ruff check"], description = "Check code style" }
+format = { commands = ["poetry run black ."], description = "Format code" }
+
+# Remains unchanged
+[project.deploy]
+command = "poetry run python -m smart_contracts deploy"
+environment_secrets = ["DEPLOYER_MNEMONIC"]
+
+# REMOVED: The entire [generate] section
+# Previously:
+# [generate.smart-contract]
+# description = "Generate a new smart contract"
+# path = ".algokit/generators/smart-contract"
+#
+# This functionality is replaced by `algokit project add` commands
