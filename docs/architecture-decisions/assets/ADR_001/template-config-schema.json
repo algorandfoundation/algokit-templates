@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AlgoKit Template Configuration Schema",
+  "description": "Schema for AlgoKit template configuration files",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the template",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": {
+      "type": "string", 
+      "description": "Human-readable name for the template",
+      "minLength": 1
+    },
+    "generators": {
+      "type": "array",
+      "description": "List of generators to apply in sequence",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the generator to apply"
+          },
+          "data": {
+            "type": "object",
+            "description": "Optional data to pass to the generator",
+            "additionalProperties": true
+          }
+        },
+        "required": ["name"],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["id", "name", "generators"],
+  "additionalProperties": false
+}
